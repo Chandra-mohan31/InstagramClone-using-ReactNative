@@ -1,68 +1,65 @@
-import React from 'react';
-import {StyleSheet} from "react-native";
+import React from 'react'
+import {StyleSheet} from 'react-native'
 import {
-  Body,
-  Right,
-  Button,
-  Title,
-  Icon,
-  Header,
-  Text,
-} from "native-base";
+    Header,
+    Body,
+    Right,
+    Button,
+    Icon,
+    Title,
+    Text
+} from 'native-base'
 
-import {connect} from "react-redux";
-import propTypes from "prop-types";
-import {signOut} from "../action/auth";
+import { connect} from 'react-redux'
+import propTypes from 'prop-types'
+import {signOut} from '../action/auth'
 
 
-const CustomHeader = ({signOut,authState,navigation}) => {
-    return (
+const CustomHeader = ({signOut, authState, navigation}) => {
+    return(
         <Header
         androidStatusBarColor="#0f4c75"
         style={{
-          backgroundColor:"#0f4c75"
+            backgroundColor: "#0f4c75"
         }}
         >
         <Body>
-          <Title>
-            Social App
-          </Title>
-          <Right>
+            <Title>Social App LCO</Title>
+        </Body>
+        <Right>
             {authState.isAuthenticated && (
-              <>
+                <>
                 <Button
                 transparent
                 iconLeft
-                onPress={()=>navigation.navigation('AddPost')}
+                onPress={() => navigation.navigate('AddPost')}
                 >
-                <Text style={{color:"#fdcb9e"}}>Add Post</Text>
+                <Text style={{color: '#fdcb9e'}}>Add Post</Text>
                 </Button>
                 <Button
                 transparent
-                onPress={()=>signOut()}
+                onPress={() => signOut()}
                 >
-                  <Icon name="log-out-outline" style={{color:"red"}}></Icon>
+                    <Icon name="log-out" style={{color: "red"}} />
                 </Button>
-              </>
+                </>
             )}
-          </Right>
-        </Body>
-          
+        </Right>
         </Header>
     )
 }
 
 const mapStateToProps = (state) => ({
-  authState: state.auth
+    authState: state.auth
 })
 
 const mapDispatchToProps = {
-  signOut
+    signOut
 }
 
-CustomHeader.propTypes = {
-  signOut: propTypes.func.isRequired,
-  authState: propTypes.object.isRequired
+CustomHeader.prototypes = {
+    signOut: propTypes.func.isRequired,
+    authState: propTypes.object.isRequired
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CustomHeader)
+export default connect(mapStateToProps, mapDispatchToProps )(CustomHeader)
